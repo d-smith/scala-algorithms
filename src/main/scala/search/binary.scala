@@ -1,7 +1,7 @@
 package search
 
 object BinarySearch {
-  def indexOf(number: Int, numbers: Array[Int]) : Option[Int] = {
+  def indexOf[A](number: A, numbers: Array[A])(implicit numeric: Numeric[A]) : Option[Int] = {
     var low = 0
     var high = numbers.length - 1
 
@@ -12,7 +12,7 @@ object BinarySearch {
         return Some(mid)
       }
 
-      if(current >= number)
+      if(numeric.gteq(current, number)) //current >= number)
         high = mid - 1
       else
         low = mid + 1
